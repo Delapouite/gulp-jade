@@ -29,6 +29,14 @@ module.exports = function(options){
     opts.filename = file.path;
     file.path = handleExtension(file.path, opts);
 
+    if('data' in file) {
+        opts.data = file.data;
+    }
+
+    if('locals' in file) {
+        opts.locals = file.locals;
+    }
+
     if(file.isStream()){
       this.emit('error', new PluginError('gulp-jade', 'Streaming not supported'));
       return cb();
